@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <group ns="A">
+        <param name="topic_name" value="message"/>
+        <node name="publisherA" pkg="launch_file_tutorial" type="launch_publisher" output="screen"/>
+    </group>
+        <group ns="B">
+        <param name="topic_name" value="message"/>
+        <node name="publisherB" pkg="launch_file_tutorial" type="launch_publisher" output="screen"/>
+    </group>
+</launch>

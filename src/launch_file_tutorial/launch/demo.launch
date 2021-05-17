@@ -1,0 +1,30 @@
+<!-- <?xml version="1.0"?>
+<launch>
+
+  <arg name="turntable_model" default="$(find turntable_urdf)/urdf/turntable_urdf2.urdf"/>
+
+  <arg name="gui" default="true" />
+  <group ns="turntable">
+    <rosparam file="$(find turntable_bringup)/config/turntable_controllers.yaml" command="load"/>
+    <rosparam file="$(find turntable_bringup)/config/turntable_joint_limits.yaml" command="load"/>
+    <param name="robot_description" command="$(find xacro)/xacro.py $(arg turntable_model)" />
+    <param name="use_gui" value="$(arg gui)"/>
+
+    <node name="turntable_bringup_node" pkg="turntable_bringup" type="turntable_bringup_node" output="screen"/>
+
+    <node name="turntable_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+
+      <!-- <remap from="/joint_states" to="/turntable/joint_states" /> -->
+
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turntable_bringup)/config/turntable_config.rviz"/>
+
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="
+        	MyRobot/joints_update 
+          MyRobot/RotateJoint_PositionController 
+          MyRobot/PitchJoint_PositionController
+        ">
+    </node>
+  </group>
+</launch> -->

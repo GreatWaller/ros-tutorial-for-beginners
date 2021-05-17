@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="topic_name" default="messageA" />
+
+    <!-- <param name="topic_name" value="$(arg topic_name)"/> -->
+    <rosparam file="$(find launch_file_tutorial)/config/config.yaml" command="load" />
+
+    <node name="publisher" pkg="launch_file_tutorial" type="launch_publisher" output="screen"/>
+</launch>

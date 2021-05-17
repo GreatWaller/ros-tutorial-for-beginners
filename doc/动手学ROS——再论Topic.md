@@ -1,4 +1,4 @@
-# 动手学ROS——再论Topic
+# 动手学ROS——再谈Topic之获取msg
 
 之前两节已经介绍了如何创建publisher和subscriber，本节我们再补充一点关于topic的知识。
 
@@ -11,6 +11,35 @@
   这是一种有用的方式，毕竟有些时候，我们只是临时需要某个Topic中的数据。
 
 接下来就直接看示例代码：
+
+#### 1 订阅Topic
+
+我们重用《动手学ROS——Topic通信》中的例子：
+
+```c++
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+
+void chatterCallback(const std_msgs::String::ConstPtr &msg)
+{
+    ROS_INFO("I heard: [%s]", msg->data.c_str());
+}
+
+int main(int argc, char **argv)
+{
+    ros::init(argc, argv, "subscriber");
+    ros::NodeHandle n;
+
+    ros::Subscriber sub = n.subscribe("chatter", 100, chatterCallback);
+
+    ros::spin();
+    return 0;
+}
+```
+
+
+
+#### 2 使用waitForMessage直接获取msg
 
 在《动手学ROS——自定义msg》一节中创建的custom_msg_publisher pkg中，新增wait_message.cpp:
 
@@ -69,3 +98,8 @@ $ rosrun custom_msg_publisher wait_message_node
 
 
 #### 小结
+
+为了文章的完整性，本文再次利用了之前章节的例子。本文的重点是第2种方式。记录在此，以节省初学者查找资料的时间。
+
+后续还会介绍到Topic相关的内容。但为了让读者尽快熟悉ROS的基本用法，下一节开始介绍ros节点的启动方法--roslaunch.
+
