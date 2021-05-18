@@ -1,0 +1,3 @@
+<launch>
+    <node name="single_thread_demo" pkg="multi_threads" type="single_thread_demo" output="screen"/>
+</launch>

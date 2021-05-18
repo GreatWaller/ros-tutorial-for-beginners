@@ -1,0 +1,5 @@
+<launch>
+    <node name="simple_subscriber" pkg="ros_topic" type="subscriber" output="screen">
+        <remap from="chatter" to="B/message"/>
+    </node>
+</launch>

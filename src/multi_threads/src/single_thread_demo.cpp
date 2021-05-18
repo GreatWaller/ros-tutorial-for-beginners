@@ -1,5 +1,4 @@
 #include <thread>
-#include <ros/callback_queue.h>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 void CallbackA(const std_msgs::String::ConstPtr &msg)
@@ -15,9 +14,9 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "listener");
     ros::NodeHandle n;
-    ros::Subscriber sub_b = n.subscribe("MessageB", 1, CallbackB);
+    ros::Subscriber sub_b = n.subscribe("B/message", 1, CallbackB);
 
-    ros::Subscriber sub_a = n.subscribe("MessageA", 1, CallbackA);
+    ros::Subscriber sub_a = n.subscribe("A/message", 1, CallbackA);
     ros::spin();
 
     return 0;

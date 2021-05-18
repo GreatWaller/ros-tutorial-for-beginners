@@ -1,6 +1,6 @@
 
 
-# 动手学ROS——roslaunch
+# 动手学ROS（5）：roslaunch
 
 前几篇文章在启动ros node的时候使用的是rosrun命令，但每次启动之前都需要单独启动roscore，显得有些繁琐。其实ros还提供了一种运行ros node的方式：roslaunch。
 
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 
         std::stringstream ss;
         // 发送的消息中包含namespace
-        std::string ns = n.getNamespace().compare("/") == 0 ? "" : "/";
+        std::string ns = n.getNamespace().compare("/") == 0 ? "" : n.getNamespace();
         ss << ns << "/" << topicName << " " << count;
         msg.data = ss.str();
 
@@ -107,7 +107,7 @@ topic_name: messageA
 
 rosparam 通过 load 命令读取 config.yaml 文件中的配置项，保存在参数服务器中。通过yaml文件，一次可以加载大量配置，在项目中应用广泛。
 
-
+示例中使用find命令查找package所在位置。
 
 #### 测试
 
@@ -217,4 +217,3 @@ process[publisher-2]: started with pid [21239]
 3. 介绍了基本的传参手段；
 4. launch file可逐级嵌套。
 
-下一节，我们将聊一聊ros中的namespace。

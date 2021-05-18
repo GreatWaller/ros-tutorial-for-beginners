@@ -1,4 +1,4 @@
-
+# 动手学ROS（7）：精讲多线程之MultiThreadedSpinner
 
 https://levelup.gitconnected.com/ros-spinning-threading-queuing-aac9c0a793f
 
@@ -15,7 +15,56 @@ http://wiki.ros.org/actionlib_tutorials/Tutorials/SimpleActionClient%28Threaded%
 
 
 
-#### Talker
+#### 单线程的问题
+
+
+
+Subscriber代码如下：
+
+```c++
+#include <thread>
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+void CallbackA(const std_msgs::String::ConstPtr &msg)
+{
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    ROS_INFO(" I heard: [%s]", msg->data.c_str());
+}
+void CallbackB(const std_msgs::String::ConstPtr &msg)
+{
+    ROS_INFO(" I heard: [%s]", msg->data.c_str());
+}
+int main(int argc, char **argv)
+{
+    ros::init(argc, argv, "listener");
+    ros::NodeHandle n;
+    ros::Subscriber sub_b = n.subscribe("B/message", 1, CallbackB);
+
+    ros::Subscriber sub_a = n.subscribe("A/message", 1, CallbackA);
+    ros::spin();
+
+    return 0;
+}
+```
+
+其中CallbackA中停顿了2s, 但结果显示，CallbackB也跟着变成2s的调用频率。日志如下（注意打印时间）：
+
+```
+[ INFO] [1621326729.752814500]:  I heard: [/A/message 1]
+[ INFO] [1621326729.754280300]:  I heard: [/B/message 4]
+[ INFO] [1621326731.754527800]:  I heard: [/A/message 5]
+[ INFO] [1621326731.754622700]:  I heard: [/B/message 8]
+[ INFO] [1621326733.754884500]:  I heard: [/A/message 9]
+[ INFO] [1621326733.755030400]:  I heard: [/B/message 12]
+```
+
+这就说明了单线程的不足，不管有多少个Subscriber，节点都只能顺序执行回调，这在某些时候是不能忍受的，因此，多线程有了用武之地。
+
+
+
+#### 多线程
+
+
 
 ```c++
 #include <sstream>
@@ -44,10 +93,6 @@ int main(int argc, char **argv) {
 ```
 
 
-
-
-
-![img](https://miro.medium.com/max/1586/1*xc4BrVJqVW9OebNdoU5i6g.png)
 
 
 

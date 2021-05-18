@@ -10,6 +10,8 @@ int main(int argc, char **argv)
 
     std::string topicName;
     n.param<std::string>("topic_name", topicName, "message");
+    // n.param<std::string>("/topic_name", topicName, "mess");
+    // n.param<std::string>("/topic_name", topicName, "/message");
 
     ros::Publisher chatter_pub = n.advertise<std_msgs::String>(topicName, 100);
 
@@ -21,7 +23,7 @@ int main(int argc, char **argv)
         std_msgs::String msg;
 
         std::stringstream ss;
-        std::string ns = n.getNamespace().compare("/") == 0 ? "" : "/";
+        std::string ns = n.getNamespace().compare("/") == 0 ? "" : n.getNamespace();
         ss << ns << "/" << topicName << " " << count;
         msg.data = ss.str();
 
