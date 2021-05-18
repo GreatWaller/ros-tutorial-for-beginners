@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="topic_name" default="messageB" />
+    <include file="$(find launch_file_tutorial)/launch/single_publisher.launch" >
+        <arg name="topic_name" value="$(arg topic_name)" />
+    </include>
+</launch>
