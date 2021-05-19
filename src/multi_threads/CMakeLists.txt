@@ -205,3 +205,12 @@ include_directories(
 # catkin_add_nosetests(test)
 add_executable(single_thread_demo src/single_thread_demo.cpp)
 target_link_libraries(single_thread_demo ${catkin_LIBRARIES})
+
+add_executable(multi_threads_demo src/multi_threads.cpp)
+target_link_libraries(multi_threads_demo ${catkin_LIBRARIES})
+
+add_executable(one_sub_multi_spinners src/one_sub_multi_spinners.cpp)
+target_link_libraries(one_sub_multi_spinners ${catkin_LIBRARIES})
+
+add_executable(multi_subscribers_multi_queues src/multi_subscribers_multi_queues.cpp)
+target_link_libraries(multi_subscribers_multi_queues ${catkin_LIBRARIES})

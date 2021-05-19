@@ -1,4 +1,4 @@
-# 动手学ROS（4）：——再谈Topic之获取msg
+# 动手学ROS（4）：获取Topic消息之waitForMessage
 
 之前两节已经介绍了如何创建publisher和subscriber，本节我们再补充一点关于topic的知识。
 

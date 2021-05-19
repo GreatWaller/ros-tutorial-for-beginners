@@ -1,0 +1,3 @@
+<launch>
+    <node name="one_sub_multi_spinners" pkg="multi_threads" type="one_sub_multi_spinners" output="screen"/>
+</launch>

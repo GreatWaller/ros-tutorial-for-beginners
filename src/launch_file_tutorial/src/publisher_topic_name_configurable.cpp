@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 
     ros::Publisher chatter_pub = n.advertise<std_msgs::String>(topicName, 100);
 
-    ros::Rate loop_rate(2);
+    ros::Rate loop_rate(1);
 
     int count = 0;
     while (ros::ok())
