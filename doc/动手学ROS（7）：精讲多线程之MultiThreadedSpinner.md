@@ -52,7 +52,7 @@ int main(int argc, char **argv)
 [ INFO] [1621391350.657563600]:  I heard: [/B/message 6]
 ```
 
-![multi_sub_one_spinner](images/动手学ROS（7）：精讲多线程之MultiThreadedSpinner/multi_sub_one_spinner.png)
+![multi_sub_one_spinner](images/multi_sub_one_spinner.png)
 
 一图胜千言，在只有一个Spinner thread的情况下，callback queue只能顺序执行。
 
@@ -108,7 +108,7 @@ MultiThreadedSpinner可初始化线程的数量，这里因为有两个subscribe
 
 CallbackB处理了B/message中的所有消息(1,2,3,4,5,6)，而CallbackA还是2s调用一次，只处理了A/message中编号为1，3，5的消息。也就是说，我们有一个空闲的线程在另一个线程被CallbackA占用时可以从容地处理CallbackB。如下图：
 
-![multi_sub_multi_spinner](images/动手学ROS（7）：精讲多线程之MultiThreadedSpinner/multi_sub_multi_spinner.png)
+![multi_sub_multi_spinner](images/multi_sub_multi_spinner.png)
 
 #### 3 订阅一个Topic，多个Spinner threads
 
@@ -151,7 +151,7 @@ int main(int argc, char **argv) {
 
 虽然ChatterCallback中仍然是等待2s，但实际上却处理了每一秒接收到的消息。如图：
 
-![one_sub_multi_spinners](images/动手学ROS（7）：精讲多线程之MultiThreadedSpinner/one_sub_multi_spinners.png)
+![one_sub_multi_spinners](images/one_sub_multi_spinners.png)
 
 #### 4 订阅多个Topic，每个Subscriber一个Callback queue
 
@@ -161,7 +161,7 @@ int main(int argc, char **argv) {
 >
 > To solve the problem, we can create **a separate callback queue and spinner thread which is dedicated to the message A** as shown below.
 
-![multi_sub_multi_queue](images/动手学ROS（7）：精讲多线程之MultiThreadedSpinner/multi_sub_multi_queue.png)
+![multi_sub_multi_queue](images/multi_sub_multi_queue.png)
 
 ```c++
 #include <thread>
@@ -199,5 +199,6 @@ int main(int argc, char **argv) {
 
 1. MultiThreadedSpinner可使节点多线程执行任务；
 2. 要使一个Subscriber多线程执行，需设置SubscribeOptions的allow_concurrent_callbacks为true；
-3. 如果需要保证某个Subscriber优先执行，可配置其独立的CallbackQueue。
+3. 如果需要保证某个Subscriber优先执行，可配置其独立的CallbackQueue；
+4. 其实还有个AsyncSpinner提供和MultiThreadedSpinner类似的功能，有机会再介绍。
 
