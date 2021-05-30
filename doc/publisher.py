@@ -17,7 +17,7 @@ from shutil import copyfile
 ###############################################################################################################
 # GITHUB_REPO_PREFIX = Path("https://raw.githubusercontent.com/`YourUserName`/`YourRepoName`/master/Data/")
 # Your image folder remote link
-GITHUB_REPO_PREFIX = "https://raw.githubusercontent.com/GreatWaller/ros-tutorial-for-beginners/main/doc/images/"
+GITHUB_REPO_PREFIX = "https://raw.githubusercontent.com/GreatWaller/ros-tutorial-for-beginners/main/doc/images"
 COMPRESS_THRESHOLD = 5e5 # The threshold of compression
 
 # The main function for this program
@@ -35,7 +35,7 @@ def process_for_zhihu():
         lines = table_ops(lines)
         with open(args.input.parent/(args.input.stem+"_for_zhihu.md"), "w+", encoding=chatest["encoding"]) as fw:
             fw.write(lines)
-        git_ops()
+        # git_ops()
 
 # Deal with the formula and change them into Zhihu original format
 def formula_ops(_lines):
@@ -59,9 +59,9 @@ def rename_image_ref(m, original=True):
         else:
             image_ref_name = Path(m.group(1)).name
     if original:
-        return "!["+m.group(1)+"]("+GITHUB_REPO_PREFIX+str(image_folder_path.name)+"/"+image_ref_name+")"
+        return "!["+m.group(1)+"]("+GITHUB_REPO_PREFIX+"/"+image_ref_name+")"
     else:
-        return '<img src="'+GITHUB_REPO_PREFIX+str(image_folder_path.name)+"/" +image_ref_name +'"'
+        return '<img src="'+GITHUB_REPO_PREFIX+"/" +image_ref_name +'"'
 
 # Search for the image links which appear in the markdown file. It can handle two types: ![]() and <img src="LINK" alt="CAPTION" style="zoom:40%;" />.
 # The second type is mainly for those images which have been zoomed.
