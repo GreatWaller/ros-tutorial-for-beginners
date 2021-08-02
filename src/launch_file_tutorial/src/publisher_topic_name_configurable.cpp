@@ -7,13 +7,13 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "publisher");
     ros::NodeHandle n;
-
+    ros::NodeHandle n1("~");
     std::string topicName;
     n.param<std::string>("topic_name", topicName, "message");
-    // n.param<std::string>("/topic_name", topicName, "mess");
+    n1.param<std::string>("topic_name", topicName, "default"); 
     // n.param<std::string>("/topic_name", topicName, "/message");
 
-    ros::Publisher chatter_pub = n.advertise<std_msgs::String>(topicName, 100);
+    ros::Publisher chatter_pub = n.advertise<std_msgs::String>(topicName, 2);
 
     ros::Rate loop_rate(1);
 
