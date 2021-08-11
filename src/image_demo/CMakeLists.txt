@@ -159,6 +159,12 @@ target_link_libraries(image_publisher_node
   ${OpenCV_LIBRARIES}
   )
 
+add_executable(image_subscriber_node src/image_subscriber.cpp)
+target_link_libraries(image_subscriber_node 
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+  )
+
 
 #############
 ## Install ##
