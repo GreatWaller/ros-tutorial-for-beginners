@@ -101,7 +101,7 @@ $ rostopic list
 $ rqt_image_view
 ```
 
-![image-20210812094603853](images/image-20210812094603853.png)
+![image-20210812094603853](https://raw.githubusercontent.com/GreatWaller/ros-tutorial-for-beginners/main/doc/images/image-20210812094603853.jpg)
 
 #### Subscriber
 
