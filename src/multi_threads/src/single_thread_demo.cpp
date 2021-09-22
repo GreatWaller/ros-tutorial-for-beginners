@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "listener");
     ros::NodeHandle n;
-    ros::Subscriber sub_b = n.subscribe("B/message", 1, CallbackB);
+    ros::Subscriber sub_b = n.subscribe("B/message", 2, CallbackB);
 
     ros::Subscriber sub_a = n.subscribe("A/message", 1, CallbackA);
     ros::spin();
