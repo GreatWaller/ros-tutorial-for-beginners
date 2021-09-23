@@ -34,6 +34,13 @@ def project2d(points,m):
     pts, jac = cv2.projectPoints(points, np.array([0,0,0], np.float32), np.array([0,0,0], np.float32), m, d0)
     pts = np.int32(pts).reshape(-1,2)
     return pts
+def project2d_simple(points,m):
+    pts=[]
+    for point in points:
+        pt=np.matmul(m,point)
+        pt=pt/pt[2]
+        pts.append(pt[:2])
+    return np.int32(pts).reshape(-1,2)
 
 def draw_point(img, points):
     for point in points:
@@ -63,6 +70,8 @@ if __name__ =="__main__":
     points=np.array([[-48.831894, -86.462112, 316.351135],[-29.942320, -85.639320, 311.097839],[-11.202976, -85.063042, 306.122345]])
     
     pts=project2d(points,m1)
+
+    pts_1=project2d_simple(points,m1)
     draw_point(img_l,pts)
 
 
