@@ -1,5 +1,5 @@
 import rospy
-from rospy.timer import sleep
+import time
 from std_msgs.msg import String
 
 class SimpleSubscriber():
@@ -11,7 +11,7 @@ class SimpleSubscriber():
     def callback(self,msg):
         print(msg)
         # self.rate.sleep()
-        sleep(1)
+        time.sleep(1)
 
 if __name__ == '__main__':
     SimpleSubscriber()
