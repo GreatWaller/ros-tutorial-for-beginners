@@ -31,6 +31,6 @@
 
 #### 12 多机通信-master节点配置
 
-#### 13 点云的发布与订阅--PointCloud2类型
+#### 13 点云的发布与订阅--PointCloud2
 
 #### 14 Topic之queue size
