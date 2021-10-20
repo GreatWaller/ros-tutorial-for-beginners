@@ -4,9 +4,9 @@ from std_msgs.msg import String
 
 if __name__ == '__main__':
     rospy.init_node('simple_talker')
-    rate = rospy.Rate(4)
+    rate = rospy.Rate(5)
 
-    pub = rospy.Publisher('simple_talker', String, queue_size=1)
+    pub = rospy.Publisher('simple_talker', String, queue_size=10)
     i = 0
     while not rospy.is_shutdown():
         msg = String(str(i))
@@ -14,4 +14,7 @@ if __name__ == '__main__':
         print(msg)
         i += 1
         rate.sleep()
-    
+    #     if i > 50:
+    #         break
+
+    # rospy.spin()

@@ -7,9 +7,9 @@ import numpy as np
  
 def talker():
 
-    pub = rospy.Publisher('pointcloud_topic', PointCloud2, queue_size=5)
+    pub = rospy.Publisher('pointcloud_topic', PointCloud2, queue_size=1)
     rospy.init_node('pointcloud_publisher_node', anonymous=True)
-    rate = rospy.Rate(1)
+    rate = rospy.Rate(5)
 
     points=np.array([[225.0, -71.0, 819.0],[237.0, -24.0, 816.0],[254.0, -82.0, 772.0]])
 
@@ -43,7 +43,7 @@ def talker():
         msg.point_step = 12
         msg.row_step = msg.point_step * points.shape[0]
         # msg.is_dense = int(np.isfinite(points).all())
-        msg.is_dense = False
+        msg.is_dense = True
         msg.data = np.asarray(points, np.float32).tostring()
 
         pub.publish(msg)

@@ -9,7 +9,8 @@ class PointCloudSubscriber(object):
     def __init__(self) -> None:
         self.sub = rospy.Subscriber("pointcloud_topic",
                                      PointCloud2,
-                                     self.callback, queue_size=5)
+                                     self.callback, queue_size=1)
+        self.rate=rospy.Rate(1)
     def callback(self, msg):
         assert isinstance(msg, PointCloud2)
         print(msg.header.seq)
@@ -17,8 +18,8 @@ class PointCloudSubscriber(object):
         points = point_cloud2.read_points_list(
             msg, field_names=("x", "y", "z"))
 
-        print(points)
-
+        # print(points)
+        self.rate.sleep()
 
 if __name__ =='__main__':
     rospy.init_node("pointcloud_subscriber")
