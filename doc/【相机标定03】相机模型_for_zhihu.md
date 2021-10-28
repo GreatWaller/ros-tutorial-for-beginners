@@ -26,12 +26,10 @@
 即：
 
 <img src="https://www.zhihu.com/equation?tex=\begin{align}
-x &= f \cdot \frac {X}{Z} ; &y= f \cdot \frac YZ \\
-
+x &= f \cdot \frac {X}{Z} ; &y= f \cdot \frac YZ 
 \end{align}\\
 " alt="\begin{align}
-x &= f \cdot \frac {X}{Z} ; &y= f \cdot \frac YZ \\
-
+x &= f \cdot \frac {X}{Z} ; &y= f \cdot \frac YZ 
 \end{align}\\
 " class="ee_img tr_noresize" eeimg="1">
 到目前为止，我们所有的单位都是长度，比如mm，我们要做的事情是把 <img src="https://www.zhihu.com/equation?tex=(x,y)" alt="(x,y)" class="ee_img tr_noresize" eeimg="1"> 转为像素表示 <img src="https://www.zhihu.com/equation?tex=(u,v)" alt="(u,v)" class="ee_img tr_noresize" eeimg="1"> 。
