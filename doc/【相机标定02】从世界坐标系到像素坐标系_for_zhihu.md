@@ -301,4 +301,188 @@ z_c\\
 - 从世界坐标系到相机坐标系
 - 从相机坐标系投影到像素坐标系
 
+这个过程可以描述为：
+
+<img src="https://www.zhihu.com/equation?tex=\begin{align}
+w
+\left[
+\begin{matrix}
+u\\
+v\\
+1
+\end{matrix}
+\right]
+&=
+\left[
+\begin{matrix}
+f_x & 0 & c_{x} & 0\\
+0 & f_{y} & c_{y} & 0\\
+0 & 0 & 1 & 0
+\end{matrix}
+\right]
+\cdot
+\left[
+\begin{matrix}
+x_c\\
+y_c\\
+z_c\\
+1
+\end{matrix}
+\right]\\
+&=
+\left[
+\begin{matrix}
+f_x & 0 & c_{x} & 0\\
+0 & f_{y} & c_{y} & 0\\
+0 & 0 & 1 & 0
+\end{matrix}
+\right]
+\cdot
+\left[
+\begin{matrix}
+r_{11} & r_{12} & r_{13} & T_x\\
+r_{21} & r_{22} & r_{23} & T_y\\
+r_{31} & r_{32} & r_{33} & T_z\\
+0 &　0 & 0 & 1
+\end{matrix}
+\right]
+\cdot
+\left[
+\begin{matrix}
+x_o\\
+y_o\\
+z_o\\
+1
+\end{matrix}
+\right]\\
+&=
+\left[
+\begin{matrix}
+f_x & 0 & c_{x} \\
+0 & f_{y} & c_{y} \\
+0 & 0 & 1 
+\end{matrix}
+\right]
+\cdot
+\left[
+\begin{matrix}
+r_{11} & r_{12} & r_{13} & T_x\\
+r_{21} & r_{22} & r_{23} & T_y\\
+r_{31} & r_{32} & r_{33} & T_z
+\end{matrix}
+\right]
+\cdot
+\left[
+\begin{matrix}
+x_o\\
+y_o\\
+z_o\\
+1
+\end{matrix}
+\right]\\
+&=
+P \cdot 
+\left[
+\begin{matrix}
+x_o\\
+y_o\\
+z_o\\
+1
+\end{matrix}
+\right]
+
+\end{align}\\
+" alt="\begin{align}
+w
+\left[
+\begin{matrix}
+u\\
+v\\
+1
+\end{matrix}
+\right]
+&=
+\left[
+\begin{matrix}
+f_x & 0 & c_{x} & 0\\
+0 & f_{y} & c_{y} & 0\\
+0 & 0 & 1 & 0
+\end{matrix}
+\right]
+\cdot
+\left[
+\begin{matrix}
+x_c\\
+y_c\\
+z_c\\
+1
+\end{matrix}
+\right]\\
+&=
+\left[
+\begin{matrix}
+f_x & 0 & c_{x} & 0\\
+0 & f_{y} & c_{y} & 0\\
+0 & 0 & 1 & 0
+\end{matrix}
+\right]
+\cdot
+\left[
+\begin{matrix}
+r_{11} & r_{12} & r_{13} & T_x\\
+r_{21} & r_{22} & r_{23} & T_y\\
+r_{31} & r_{32} & r_{33} & T_z\\
+0 &　0 & 0 & 1
+\end{matrix}
+\right]
+\cdot
+\left[
+\begin{matrix}
+x_o\\
+y_o\\
+z_o\\
+1
+\end{matrix}
+\right]\\
+&=
+\left[
+\begin{matrix}
+f_x & 0 & c_{x} \\
+0 & f_{y} & c_{y} \\
+0 & 0 & 1 
+\end{matrix}
+\right]
+\cdot
+\left[
+\begin{matrix}
+r_{11} & r_{12} & r_{13} & T_x\\
+r_{21} & r_{22} & r_{23} & T_y\\
+r_{31} & r_{32} & r_{33} & T_z
+\end{matrix}
+\right]
+\cdot
+\left[
+\begin{matrix}
+x_o\\
+y_o\\
+z_o\\
+1
+\end{matrix}
+\right]\\
+&=
+P \cdot 
+\left[
+\begin{matrix}
+x_o\\
+y_o\\
+z_o\\
+1
+\end{matrix}
+\right]
+
+\end{align}\\
+" class="ee_img tr_noresize" eeimg="1">
+其中 <img src="https://www.zhihu.com/equation?tex=P" alt="P" class="ee_img tr_noresize" eeimg="1"> 是一个 <img src="https://www.zhihu.com/equation?tex=3 \times 4" alt="3 \times 4" class="ee_img tr_noresize" eeimg="1"> 的矩阵，称为投影矩阵，概括了整个投影过程，我们以后还会使用到它，这里暂时不展开介绍。
+
 最后，我们目前只是看到了内参的构成，但还没有介绍它为什么是这个形式。笔者的意图是首先通过了解内参的用途和意义，知其然后再知其所以然，这部分在相机模型中会涉及。
+
