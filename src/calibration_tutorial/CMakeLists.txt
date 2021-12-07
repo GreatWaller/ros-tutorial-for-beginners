@@ -157,6 +157,13 @@ target_link_libraries(${PROJECT_NAME}_perspective_node
   ${OpenCV_LIBRARIES}
 )
 
+
+add_executable(${PROJECT_NAME}_undistortion_node src/undistortion.cpp)
+target_link_libraries(${PROJECT_NAME}_undistortion_node
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+)
+
 #############
 ## Install ##
 #############

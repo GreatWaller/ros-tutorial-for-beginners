@@ -9,8 +9,8 @@ using namespace cv;
 
 void perspectiveCorrection(const string &img1Path, const string &img2Path, const Size &patternSize)
 {
-    Mat img1 = imread( samples::findFile(img1Path) );
-    Mat img2 = imread( samples::findFile(img2Path) );
+    Mat img1 = imread( img1Path );
+    Mat img2 = imread( img2Path );
 
     //! [find-corners]
     vector<Point2f> corners1, corners2;
